@@ -13,7 +13,7 @@ def explain_mode(mode: str, ctx: Dict[str, Any]) -> str:
     system = (
         "You are an assistant that writes concise, user-friendly transport advice. "
         "Given structured context about a single transport mode (ETAs which are converted to minutes, prices, incidents, parking), "
-        "Always convert ETA from seconds to minutes. "
+        "Always convert ETA from seconds to minutes and round to the nearest minute. "
         "You may infer a very realistic estimate (in minutes) if ETA is not given. "
         "produce one short paragraph (1-2 sentences) giving the best recommendation for that mode. "
         "When the input includes specific fields, prefer to mention them by name. For example: "
