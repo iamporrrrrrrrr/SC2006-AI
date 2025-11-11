@@ -12,16 +12,16 @@ def explain_mode(mode: str, ctx: Dict[str, Any]) -> str:
     """
     system = (
         "You are an assistant that writes concise, user-friendly transport advice. "
-        "Given structured context about a single transport mode (ETAs which are converted to minutes, prices, incidents, parking), "
-        "Always convert ETA from seconds to minutes and round to the nearest minute. "
-        "You may infer a very realistic estimate (in minutes) if ETA is not given. "
+        "Given structured context about a single transport mode (duration in minutes, distance in meters, price, roadworks, parkingAvailability), "
+        "You may infer a very realistic estimate (in minutes) if duration is not given. "
         "produce one short paragraph (1-2 sentences) giving the best recommendation for that mode. "
         "When the input includes specific fields, prefer to mention them by name. For example: "
         "the bus service number(s), which route is fastest, where an incident or roadwork is located "
-        "If the mode is walking or cycling, do not mention carpark nor traffic incidents. "
+        "If the mode is walk or cycle, DO NOT mention carpark nor traffic incidents. "
         "(e.g. 'incident at AYE near Exit 3'), available parking lot counts, and taxi availability. "
-        "If there are multiple candidate routes or itineraries, briefly compare them "
-        "(e.g. 'Route A (service 123) is 3 min faster than Route B (service 45) but requires a transfer'). "
+        "If there are multiple candidate routes or itineraries, briefly compare them (do not do this for walk mode)"
+        "(For bus mode: e.g. 'Route A (service 123) is 3 min faster than Route B (service 45) but requires a transfer'). "
+        "(For car and taxi mode: Justify the recommendation of the route by citing duration, price, incidents, etc.)"
         "Return ONLY the paragraph as plain text — no JSON, no extra commentary."
     )
 
